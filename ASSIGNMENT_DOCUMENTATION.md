@@ -462,30 +462,35 @@ Without that lock, two people would try to use the room at the same time, leadin
 ## Part 6: GitHub Repository Information
 
 **Repository URL**: 
-
+https://github.com/abdulrahman-abdulaziz-445/OS-Assignment3-abdulrahman-alyousef
 **Number of commits**: 
-
+23
 **Commit messages**: 
-1. 
-2. 
-3. 
-4. 
+1-small
+2-Id
+3-task 1, 2 and 3
+4-Implement synchronized context switch increment method 
+5-log excution 
+6-Document CPU semaphore changes in task 3 
+7-Enhance testing documentation for consistency and sync 
+.......
+23- last commit
 
 ---
 
 ## Summary
-
+did all the tasks succesfully
 **Total time spent on assignment**: 
-
+10 hours
 **Key takeaways**: 
-1. 
-2. 
-3. 
+1. answer the Qs
+2. coding 
+3. doing the video
 
 **Most challenging aspect**: 
-
+coding and implementing the synchronization
 **What I'm most proud of**: 
-
+learning the aspect of synchronization
 ---
 
 **End of Documentation**
