@@ -153,7 +153,14 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+public static void incrementContextSwitch() {
+        lock.lock(); //task 1: protect entire method with lock
+        try {
+        contextSwitchCount++;
+    } finally {
+            lock.unlock();
+        }
+    }
 ```
 
 **Justification**: 
