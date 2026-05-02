@@ -43,16 +43,21 @@ no test
 15 mins
 ---
 
-### Entry 2 - [Date, Time]
-**What I implemented**: 
+### Entry 2 - [29 April, 3:00am]
+What I implemented:
+Integrated Synchronization mechanisms. I added ReentrantLock to protect shared variables and an ArrayList, and implemented a Semaphore to act as the single-core CPU.
 
-**Challenges encountered**: 
+Challenges encountered:
+Risk of Deadlocks. I realized that if a thread crashed while holding a lock, the entire simulation would freeze because no other thread could proceed.
 
-**How I solved it**: 
+How I solved it:
+Applied the try-finally pattern. By placing unlock() and release() in the finally block, I guaranteed that resources are freed regardless of errors.
 
-**Testing approach**: 
+Testing approach:
+Stress testing with a high process count to ensure no ConcurrentModificationException occurred and that the "Total Completed Processes" remained accurate under heavy load.
 
-**Time spent**: 
+Time spent:
+2 hours.
 
 ---
 
