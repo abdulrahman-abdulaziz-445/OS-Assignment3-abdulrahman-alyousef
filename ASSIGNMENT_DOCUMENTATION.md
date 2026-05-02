@@ -141,18 +141,40 @@ public static void logExecution(String message) {
 ### Question 2: Locks vs Semaphores
 **Q**: Explain the difference between ReentrantLock and Semaphore. Where did you use each in your code and why?
 
-**Your Answer**:
+Difference : 
 
-[Your answer here - explain your implementation choices]
+ReentrantLock (Mutex): Acts like a personal key. Only one thread can "own" the lock at a time. If the same thread encounters the lock again, it can re-enter (hence "Reentrant"). It is strictly for Mutual Exclusion.
+
+Semaphore: Acts like a ticket counter. It manages a set of "permits." Multiple threads can pass through if permits are available. It is used for Resource Management or signaling between threads.
+-----------------
+
+ReentrantLock
+Where: Used in SharedResources to protect the executionLog and the counter variables (contextSwitchCount, etc.).
+
+Why: These are data resources. Since an ArrayList or a static counter can only be safely modified by one thread at a time to prevent data corruption or lost updates, a lock is the perfect tool to ensure only one "writer" is active.
+
+-----------------
+
+Semaphore
+Where: Used in the Process class run() method to control access to the simulated CPU.
+
+Why: This represents a physical resource. I used a Binary Semaphore (1 permit) to simulate a single-core CPU. It acts as a gatekeeper: even if 14 process threads are ready to run, the semaphore ensures only one can "hold" the CPU permit and execute its quantum at any given moment.
 
 ---
 
 ### Question 3: Deadlock Prevention
 **Q**: What is deadlock? Explain TWO prevention techniques and what you did to prevent deadlocks in your code.
 
-**Your Answer**:
+- 1 -
+- Lock Ordering: This ensures that all threads always acquire multiple locks in the exact same predefined order. If Thread A and Thread B both try to get Lock 1 then Lock 2, one will simply wait for the other, preventing a circular "deadly embrace."
 
-[Your answer here - reference try-finally blocks, lock ordering, etc.]
+- 2 -
+- Timeouts / Resource Release (The try-finally Block): This ensures that once a thread acquires a lock, it is guaranteed to release it, even if an error or exception occurs. This prevents a "Zombie Lock" where a resource is held forever by a crashed or hung thread.
+
+What I did ? 
+- The finally Block Pattern: I wrapped every lock() and acquire() operation in a try block, with the corresponding unlock() or release() inside a finally block. This is the most critical step I took; it ensures that the CPU Semaphore and the ReentrantLock are always freed, even if a process is interrupted or fails.
+----------------
+To prevent deadlocks, I implemented a strict Resource Release Policy using try-finally blocks. This ensures that no thread can permanently 'hog' the CPU Semaphore or the data Lock, allowing the scheduler to continue running until all processes are complete.
 
 ---
 
