@@ -233,8 +233,39 @@ Monitored the console for any ConcurrentModificationException or InterruptedExce
 
 Verified that the Total Completed Processes matched the number of processes created every single time
 ```bash
-# Commands used (run the program at least 5 times)
-```
+- 0 -
+Total Context Switches: 26
+Total Completed Processes: 14
+Total Waiting Time: 494067ms
+Average Waiting Time: 35290ms
+Total log entries: 52
+- 1 -
+Total Context Switches: 26
+Total Completed Processes: 14
+Total Waiting Time: 493757ms
+Average Waiting Time: 35268ms
+Total log entries: 52
+- 2 -
+Total Context Switches: 26
+Total Completed Processes: 14
+Total Waiting Time: 493914ms
+Average Waiting Time: 35279ms
+Total log entries: 52
+- 3 -
+Total Context Switches: 26
+Total Completed Processes: 14
+Total Waiting Time: 494185ms
+Average Waiting Time: 35298ms
+Total log entries: 52
+- 4 -
+Total Context Switches: 26
+Total Completed Processes: 14
+Total Waiting Time: 494261ms
+Average Waiting Time: 35304ms
+Total log entries: 52
+
+
+
 
 **Results**: 
 The execution was strictly sequential; no two processes ever printed "executing quantum" at the exact same timestamp, proving the Semaphore was holding threads back correctly
