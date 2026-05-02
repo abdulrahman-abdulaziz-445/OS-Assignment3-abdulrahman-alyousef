@@ -484,7 +484,7 @@ https://github.com/abdulrahman-abdulaziz-445/OS-Assignment3-abdulrahman-alyousef
 6-Document CPU semaphore changes in task 3 
 7-Enhance testing documentation for consistency and sync 
 .......
-23- last commit
+26- last commit
 
 ---
 
