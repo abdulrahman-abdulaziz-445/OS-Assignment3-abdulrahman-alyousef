@@ -106,7 +106,35 @@ Document your development process with **minimum 3 entries** showing progression
 
 **Your Answer**:
 
-[Your answer here - 4-6 sentences with code examples]
+- 1 -
+Race Condition : Shared Counter Variables
+
+Shared Resource: contextSwitchCount, completedProcessCount, and totalWaitingTime.
+
+Why it's a problem: These variables use non-atomic operations (like count++). In a multi-threaded environment, two threads might read the same value (e.g., 10), both increment it to 11 in their local memory, and both write 11 back to the variable.
+
+Incorrect Behavior: An update is "lost." Even though two events happened, the counter only reflects one, leading to incorrect final statistics.
+
+Code Example that multiple threads can execute this at once
+public static void incrementContextSwitch() {
+contextSwitchCount++;
+}
+------------------
+
+- 2 -
+Race Condition : The Execution Log (ArrayList)
+
+Shared Resource: executionLog (the ArrayList<String>).
+
+Why it's a problem: ArrayList is not thread-safe. Adding an item involves checking the list size, ensuring capacity, and placing the object in an internal array. If two threads do this simultaneously, they might try to write to the same index in the internal array.
+
+Incorrect Behavior: This usually results in a ConcurrentModificationException which crashes the program, or it could lead to data corruption where one log entry is overwritten and disappears.
+
+Code Example that ArrayList cannot handle multiple simultaneous .add() calls:
+
+public static void logExecution(String message) {
+    executionLog.add(message); 
+}
 
 ---
 
