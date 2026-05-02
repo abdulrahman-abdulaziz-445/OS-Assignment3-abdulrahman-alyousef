@@ -222,20 +222,34 @@ catch (InterruptedException e) {
 ## Part 4: Testing and Verification (2 marks)
 
 ### Test 1: Consistency Check
-**What I tested**: Running program multiple times to verify consistent results
+**What I tested**: Running the program multiple times to verify consistent results and ensure the absence of race conditions or data corruption
 
 **Testing procedure**: 
+Compiled the SchedulerSimulationSync.java file using javac.
+
+Ran the program 5 consecutive times using the same Student ID (445050091)
+
+Monitored the console for any ConcurrentModificationException or InterruptedException
+
+Verified that the Total Completed Processes matched the number of processes created every single time
 ```bash
 # Commands used (run the program at least 5 times)
 ```
 
 **Results**: 
-(Show that running multiple times produces consistent, correct results)
+The execution was strictly sequential; no two processes ever printed "executing quantum" at the exact same timestamp, proving the Semaphore was holding threads back correctly
 
 **Why synchronization is necessary**: 
-(Explain what race conditions COULD occur without synchronization, even if you didn't observe them. Explain which shared resources need protection and why.)
+Even if the program seems to work once without it, synchronization is required to prevent Race Conditions
+
+Shared Counters: Without ReentrantLock, two threads might perform count++ simultaneously. If count is 5, both might read 5, both increment to 6, and write back 6. One increment is lost, and the final statistics would be mathematically wrong.
+
+The Log (ArrayList): Without protection, multiple threads calling executionLog.add() would likely cause a ConcurrentModificationException because the internal pointer of the list would be updated by two threads at once, corrupting the memory of the list.
+
+CPU Access: Without the Semaphore, all process threads would start at the exact same time, printing their progress bars simultaneously and creating a jumbled, unreadable mess in the console.
 
 **Conclusion**: 
+The implementation of Mutex Locks ( ReentrantLock ) and Binary Semaphores successfully eliminated the risks of data corruption and race conditions. The program is now "Thread-Safe," providing reliable and predictable behavior regardless of how many threads are competing for resources.
 
 ---
 
