@@ -203,7 +203,16 @@ public static void logExecution(String message) {
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+public void run() {
+        // --- TASK 3 CHANGE: Acquire CPU semaphore before executing ---
+        try {
+            SharedResources.cpuSemaphore.acquire();
+// ... [CPU Execution]
+catch (InterruptedException e) {
+            System.out.println(Colors.RED + "Thread interrupted while waiting for CPU." + Colors.RESET);
+        } finally {
+            // TASK 3 CHANGE: Release CPU semaphore here ---
+            SharedResources.cpuSemaphore.release();
 ```
 
 **Effect on program behavior**: 
