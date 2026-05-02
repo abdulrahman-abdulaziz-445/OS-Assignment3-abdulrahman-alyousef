@@ -285,14 +285,18 @@ The implementation of Mutex Locks ( ReentrantLock ) and Binary Semaphores succes
 ---
 
 ### Test 2: Exception Testing
-**What I tested**: Checking for ConcurrentModificationException
+**What I tested**: Checking for ConcurrentModificationException and other thread related crashes
 
-**Testing procedure**: 
+**Testing procedure**:
+-I increased the complexity of the simulation by using a high number of processes (as determined by the student ID seed) to ensure multiple threads were frequently calling executionLog.add().
 
-**Results**: 
+-I observed the console output during the entire execution of the 5 test runs to see if the JVM threw any exceptions
+
+**Results**:
+In all 5 test runs, zero exceptions were thrown. The program moved smoothly from the "Scheduler Starting" phase to the "Final Statistics" phase without crashing. The "Total log entries" (52) remained constant across every run, confirming that every single attempt to write to the log was successful and synchronized.
 
 **What this proves**: 
-
+This proves that the ReentrantLock successfully created a Mutual Exclusion zone around the ArrayList. By locking the list before adding a message and unlocking it afterward, we prevented the "Race Condition" that occurs when two threads try to modify the internal structure of an ArrayList at the same time. Without this lock, the program would have likely crashed with a ConcurrentModificationException as soon as two processes tried to log a "yield" or "start" event simultaneously.
 ---
 
 ### Test 3: Correctness Verification
