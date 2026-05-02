@@ -325,13 +325,17 @@ Switch Accuracy: 26 context switches for 14 processes indicates that several pro
 ---
 
 ### Test 4: Different Scenarios
-**Scenario tested**: [e.g., different time quantum, more processes, etc.]
+**Scenario tested**:
+High-Concurrency Load (Increasing Process Count to 50+).
 
-**Purpose**: 
+**Purpose**:
+To verify that the synchronization mechanisms remain stable under heavy thread contention. I wanted to see if increasing the number of competing threads would cause a deadlock, or a race condition
 
-**Results**: 
+**Results**:
+The program handled 50 threads without any crashes
 
-**What I learned**: 
+**What I learned**:
+I learned that robust synchronization makes the system scalable. Because I used a finally block to release both the ReentrantLock and the Semaphore, the system is "self-healing"—even with a high volume of threads, the resources are always freed for the next process in line. This test confirmed that the synchronization logic is independent of the number of processes and can handle high-traffic simulation environments.
 
 ---
 
