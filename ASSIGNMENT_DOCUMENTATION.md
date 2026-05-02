@@ -177,7 +177,16 @@ public static void incrementContextSwitch() {
 
 **Code snippet**:
 ```java
-// Paste your implementation here
+public static void logExecution(String message) {
+        lock.lock(); //task 1: protect entire method with lock
+        try {
+            // TODO: Protect this critical section with a lock
+            // RACE CONDITION: ArrayList is not thread-safe!
+        executionLog.add(message);
+   } finally {
+            lock.unlock(); 
+        }
+    }
 ```
 
 **Justification**: 
