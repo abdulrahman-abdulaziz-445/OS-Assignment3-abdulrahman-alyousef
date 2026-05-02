@@ -45,6 +45,24 @@ no test
 
 ### Entry 2 - [29 April, 3:00am]
 What I implemented:
+Developed the foundation of the Round Robin Scheduler. I created the Process class as a thread and the Scheduler to manage burst times and time quanta.
+
+Challenges encountered:
+Threads were running over each other. This caused Race Conditions where the console output was jumbled and the final process counts were mathematically incorrect.
+
+How I solved it:
+Identified the Shared Resources (the log and the counters) that needed protection. I planned the implementation of Mutex locks to ensure only one thread could update data at a time.
+
+Testing approach:
+Ran the code multiple times to document the "unstable" results and verify that the basic Round Robin math (Remaining Time - Quantum) was correct.
+
+Time spent:
+2 hours.
+
+---
+
+### Entry 3 - [29 April, 7:00 am]
+What I implemented:
 Integrated Synchronization mechanisms. I added ReentrantLock to protect shared variables and an ArrayList, and implemented a Semaphore to act as the single-core CPU.
 
 Challenges encountered:
@@ -58,19 +76,6 @@ Stress testing with a high process count to ensure no ConcurrentModificationExce
 
 Time spent:
 2 hours.
-
----
-
-### Entry 3 - [Date, Time]
-**What I implemented**: 
-
-**Challenges encountered**: 
-
-**How I solved it**: 
-
-**Testing approach**: 
-
-**Time spent**: 
 
 ---
 
