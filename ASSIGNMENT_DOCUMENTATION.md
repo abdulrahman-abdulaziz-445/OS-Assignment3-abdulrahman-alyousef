@@ -61,7 +61,7 @@ Time spent:
 
 ---
 
-### Entry 3 - [29 April, 7:00 am]
+### Entry 3 - [1 may, 7:00 am]
 What I implemented:
 Integrated Synchronization mechanisms. I added ReentrantLock to protect shared variables and an ArrayList, and implemented a Semaphore to act as the single-core CPU.
 
@@ -79,30 +79,35 @@ Time spent:
 
 ---
 
-### Entry 4 - [Date, Time]
-**What I implemented**: 
+### Entry 4 - [2 may, 1:00pm]
+What I implemented:
+Finalized Performance Analytics and Deadlock Prevention. I added the logic to calculate average waiting times and integrated try-finally blocks across all synchronized methods.
 
-**Challenges encountered**: 
+Challenges encountered:
+The risk of "Zombie Threads"—threads that might hold onto the CPU permit forever if they encountered an error, effectively freezing the entire simulation.
 
-**How I solved it**: 
+How I solved it:
+Strictly enforced the Release Policy. By placing release() and unlock() in finally blocks, I guaranteed that resources are freed even if a thread is interrupted.
 
-**Testing approach**: 
+Testing approach:
+Conducted a "Stress Test" with a high volume of processes to confirm that the simulation always reaches 100% completion with zero freezes or data corruption.
 
-**Time spent**: 
+Time spent:
+2.5 hours.
 
 ---
 
-### Entry 5 - [Date, Time]
+### Entry 5 - [2 may, 6:00pm]
 **What I implemented**: 
-
+shoting the video
 **Challenges encountered**: 
-
+doing it to the perfect length
 **How I solved it**: 
-
+practicing
 **Testing approach**: 
-
+through google map 
 **Time spent**: 
-
+1:00 hour
 ---
 
 ## Part 2: Technical Questions (1 mark)
