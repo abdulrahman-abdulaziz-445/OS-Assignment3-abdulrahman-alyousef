@@ -146,10 +146,14 @@ Document your development process with **minimum 3 entries** showing progression
 ### Critical Section #1: Counter Variables
 
 **Which variables**: 
+contextSwitchCount, completedProcessCount, and totalWaitingTime.
 
 **Why they need protection**: 
 
+These are shared static variables. When multiple process threads run, they all try to update these values simultaneously (e.g., count++). This creates a Race Condition where two threads might read the same value, increment it, and write it back at the same time, causing one of the increments to be lost. Protection ensures "Atomicity" (the update happens as one uninterruptible operation).
+
 **Synchronization mechanism used**: 
+ReentrantLock
 
 **Code snippet**:
 ```java
@@ -170,10 +174,14 @@ public static void incrementContextSwitch() {
 ### Critical Section #2: Execution Log
 
 **What resource**: 
+executionLog
 
 **Why it needs protection**: 
 
+An ArrayList is not thread-safe. If two threads (processes) attempt to call .add() at the exact same time, it can cause a race condition in the internal array management of the list. This leads to either data loss (one log entry overwriting another) or, more commonly, a ConcurrentModificationException which would crash the simulation.
+
 **Synchronization mechanism used**: 
+ReentrantLock.
 
 **Code snippet**:
 ```java
@@ -197,9 +205,15 @@ public static void logExecution(String message) {
 
 **Purpose of semaphore**: 
 
+To control and limit concurrent access to a shared resource (the simulated CPU). It ensures that only a specific number of process threads can be in the "executing" state simultaneously, mimicking how a real CPU scheduler manages physical cores.
+
 **Number of permits and why**: 
 
+1 permit. This creates a Binary Semaphore. It is used because the simulation models a single-core CPU environment where only one process can be actively running its time quantum at any given moment.
+
 **Where implemented**: 
+
+The semaphore is declared in the SharedResources class as a static final variable and is implemented (acquired and released) within the run() method of the Process class.
 
 **Code snippet**:
 ```java
