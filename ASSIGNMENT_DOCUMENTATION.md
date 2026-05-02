@@ -30,17 +30,17 @@
 
 Document your development process with **minimum 3 entries** showing progression:
 
-### Entry 1 - [Date, Time]
+### Entry 1 - [28 April, 2:00]
 **What I implemented**: 
-
+reading the requirments
 **Challenges encountered**: 
-
+nothing yet
 **How I solved it**: 
-
+taking my time
 **Testing approach**: 
-
+no test
 **Time spent**: 
-
+15 mins
 ---
 
 ### Entry 2 - [Date, Time]
